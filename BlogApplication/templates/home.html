@@ -6,8 +6,8 @@
     {%for post in object_list%}
     <li>
     <a href="{% url 'detail' post.pk %}">{{post.title}}</a> - {{post.author.first_name}}
-    {{post.author.last_name}}- <small><a href="{% url 'edit' post.pk%}">Edit</a> </small><small><a href="{% url 'delete' post.pk%}">Delete</a><br/></small>
-    {{post.body}}
+    {{post.author.last_name}} {% if user.is_authenticated %}-<small><a href="{% url 'edit' post.pk%}">Edit</a> </small><small><a href="{% url 'delete' post.pk%}">Delete</a></small>{% endif %}<br/>
+    {{post.body | slice:":150" }}
     </li>
 {% endfor %}
 </ul>
