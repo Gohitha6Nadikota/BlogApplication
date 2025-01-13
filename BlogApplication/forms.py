@@ -13,7 +13,7 @@ class Form(forms.ModelForm):
         widgets={
             'title':forms.TextInput(attrs={'class':'form-control mt-2','placeholder':'Enter your title'}),
             'title_tag':forms.TextInput(attrs={'class':'form-control mt-2','placeholder':'Enter your title tag'}),
-            'author':forms.Select(attrs={'class':'form-control mt-2'}),
+            'author':forms.TextInput(attrs={'class':'form-control mt-2','id':'Authorname','value':'','disabled':'disabled'}),
             'category':forms.Select(choices=catags_list,attrs={'class':'form-control mt-2'}),
             'body':forms.Textarea(attrs={'class':'form-control mt-2','placeholder':'Enter your content'}),
         }

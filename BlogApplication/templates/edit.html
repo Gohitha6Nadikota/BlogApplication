@@ -5,7 +5,7 @@
 {% block content %}
 
 {% if user.is_authenticated %} 
-
+    {%if user.id  == post.author.id %}
     <h4>Edit Post</h4>
     <br/>
     <div class="form-group">
@@ -15,6 +15,10 @@
             <button class="btn btn-primary">UPDATE</button>
         </form>
     </div>
+    {% else %}
+        Unauthorised Access
+    {% endif %}
+
 {% else %}
 
     Unauthorised Access

@@ -5,7 +5,7 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-
+    {%if user.id  == post.author.id %}
     <h4>Delete Post</h4>
     <br/>
     <h3>Deleting {{post.title}}</h3>
@@ -17,6 +17,11 @@
             <button class="btn btn-danger">DELETE POST</button>
         </form>
     </div>
+    {% else %}
+
+    Unauthorised Access
+    
+    {% endif %}
 {% else %}
 
     Unauthorised Access

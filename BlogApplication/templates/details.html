@@ -9,10 +9,29 @@
 {% block content %}
     
 <h1>{{post.title}}</h1>
-<small>By {{post.author.first_name}} {{post.author.last_name}} - {{post.postDate}} {% if user.is_authenticated %} <a href="{% url 'edit' post.pk%}">Edit</a> <a href="{% url 'delete' post.pk%}">Delete</a><br/></small>{% endif %}<br/>
+<small>By {{post.author.first_name}} {{post.author.last_name}} - {{post.postDate}} {% if user.is_authenticated  %} {%if user.id  == post.author.id %} <a href="{% url 'edit' post.pk%}">Edit</a> <a href="{% url 'delete' post.pk%}">Delete</a><br/></small>{% endif %}{% endif %}<br/>
 <hr>
 <p>{{post.body | safe}}</p>
 
 <a href="{% url 'home' %}" class="btn btn-primary">Back</a>
+
+<br/>
+<hr/>
+
+<form action="{% url 'like_post' post.pk %}" method="POST">
+    {% if user.is_authenticated  %}
+    {% csrf_token %}
+    {% if liked %}
+    <button type="submit" name="postId" value={{post.id}} class="btn btn-danger btn-sm">Unlike</button> 
+    {% else %}
+    <button type="submit" name="postId" value={{post.id}} class="btn btn-primary btn-sm">Like</button> 
+    {% endif %}
+    {% else %}
+    <small><a href="{% url 'login' %}">Login To Like</a></small>
+    -{{post.total_likes}} Likes
+        
+    {% endif %}
+</form>
+
 
 {% endblock %}
