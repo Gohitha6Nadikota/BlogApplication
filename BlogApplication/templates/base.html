@@ -38,6 +38,10 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'create_category' %}">New Category</a>
                 </li>
+                <form method="post" action="{% url 'editinfo' %}" class="nav-item">
+                      {% csrf_token %} 
+                      <button type="submit" class="nav-link">Edit Profile</button>
+                </form>
                 <form method="post" action="{% url 'logout' %}" class="nav-item">
                       {% csrf_token %} 
                       <button type="submit" class="nav-link">Log Out</button>

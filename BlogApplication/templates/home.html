@@ -7,7 +7,7 @@
     <li>
     <a href="{% url 'detail' post.pk %}">{{post.title}}</a> - <a href="{% url 'category' post.category|slugify %}">({{post.category}})</a> - {{post.author.first_name}}
     {{post.author.last_name}} {% if user.is_authenticated %} {%if user.id  == post.author.id %}-<small><a href="{% url 'edit' post.pk%}">Edit</a> </small><small><a href="{% url 'delete' post.pk%}">Delete</a></small>{% endif %}{% endif %}<br/>
-    {{post.body | slice:":150"| safe}}
+    {{post.snippet | safe}}
     </li>
 {% endfor %}
 </ul>
